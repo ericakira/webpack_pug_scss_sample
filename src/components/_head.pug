@@ -1,0 +1,16 @@
+block config
+  include ../components/_config
+meta(charset="utf-8")
+if key
+  title #{page.title}
+  meta(name="description", content=`${page.description}`)
+  meta(name="keywords", content=`${page.keywords}`)
+else
+  title サイトタイトル
+  meta(name="description", content="")
+  meta(name="keywords", content="")
+meta(name="viewport" content="width=device-width,initial-scale=1.0")
+link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/css/modaal.css")
+link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css")
+link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css")
+//- link(rel="stylesheet" href=dirpath+"assets/css/style.css")

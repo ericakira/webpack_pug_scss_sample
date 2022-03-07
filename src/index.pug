@@ -1,0 +1,7 @@
+extends components/_layout
+block append config
+  - var key = 'home'
+  - var page = pages[key]
+  - var unique_class = 'home'
+block pageContent
+  p index page

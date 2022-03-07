@@ -1,0 +1,96 @@
+@use '../global' as *;
+
+/* -----------------------------
+
+base style
+
+----------------------------- */
+
+html {
+  font-size: 62.5%;
+  @include mqS {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: $primaryFont;
+  font-weight: $primaryFontWeight;
+  font-size: map-get($fontSizeList, 'sm');
+  line-height: 1.7;
+  font-feature-settings: 'palt';
+  letter-spacing: 0.08em;
+  color: $baseColor;
+  background: $baseBg;
+  @include mqSM {
+    font-size: rem-vw(map-get($fontSizeList, 'sm'));
+  }
+  @include mqS {
+    font-size: map-get($fontSizeList, 's');
+  }
+}
+
+strong {
+  font-weight: bold;
+}
+sup {
+  font-size: super;
+}
+
+::selection {
+  background: $selectionBg;
+  color: $selectionColor;
+}
+
+_:lang(x)::-ms-backdrop,
+.selector {
+  font-family: 'Segoe UI', Meiryo, sans-serif;
+}
+
+@media all and (-ms-high-contrast: none) {
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $baseColor;
+}
+
+a:hover,
+a:focus,
+a:visited {
+  text-decoration: none;
+  color: $baseColor;
+}
+
+img {
+  vertical-align: bottom;
+  max-width: 100%;
+}
+
+select,
+input,
+textarea,
+button {
+  vertical-align: middle;
+}
+
+main {
+  display: block;
+  @if $fixedHeader == true {
+    min-height: calc(100vh - #{$headerHeight});
+  } @else {
+    min-height: 100vh;
+  }
+  @if $headerOverWrap == true {
+    padding-top: 0;
+  } @else {
+    padding-top: $headerHeight;
+    @include mqS {
+      padding-top: $headerHeightSP;
+    }
+  }
+}

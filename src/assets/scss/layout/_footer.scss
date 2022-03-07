@@ -1,0 +1,51 @@
+@use '../global' as *;
+
+/* -----------------------------
+
+footer style
+
+----------------------------- */
+
+.l-footer {
+  position: relative;
+}
+
+.pagetop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: 0.4s;
+  transform: translateY(calc(100% + 20px));
+  z-index: 900;
+  &.is-active {
+    transform: translateY(0);
+  }
+  @include mqS {
+    width: 100px;
+    right: 0;
+    bottom: 10px;
+  }
+}
+
+.btn-pagetop {
+  cursor: pointer;
+  transition: 0.2s;
+
+  @include hover {
+    opacity: 0.7;
+  }
+}
+
+.l-fnav {
+  margin-bottom: 40px;
+  li {
+    margin: 0 20px;
+  }
+}
+
+.copy {
+  small {
+    display: block;
+    padding: 5px 0;
+  }
+}

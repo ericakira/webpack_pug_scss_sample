@@ -1,0 +1,113 @@
+// framework version 1.0.0
+
+// media queryのbreakpoint値
+$breakpointS: 599px;
+$breakpointM: 1025px;
+$breakpointL: 1400px;
+
+// ボックス幅(max-width)
+$widthS: 700px;
+$widthM: 920px;
+$widthL: 1024px;
+$widthXL: 1200px;
+
+// ヘッダーの高さ(PC,SP)
+$headerHeight: 80px;
+$headerHeightSP: 40px;
+
+// セクション間のスペース(PC,SP)
+$sectionPadding: 80px;
+$sectionPaddingSP: 40px;
+
+// margin,paddingの汎用サイズ
+$spacesList: (
+  none: 0px,
+  xs: 10px,
+  s: 20px,
+  sm: 30px,
+  m: 40px,
+  ml: 60px,
+  l: 80px,
+  xl: 100px,
+  xxl: 150px,
+);
+
+// フォントサイズ
+$fontSizeList: (
+  xs: 1.2rem,
+  s: 1.4rem,
+  sm: 1.6rem,
+  m: 1.8rem,
+  ml: 2rem,
+  l: 2.6rem,
+  xl: 4.2rem,
+);
+
+// letteer spacing
+$letterSpacingList: (
+  s: 0.1em,
+  m: 0.2em,
+  l: 0.35em,
+);
+
+// line-height
+$lineHeightList: (
+  s: 1,
+  sm: 1.2,
+  m: 1.5,
+  ml: 1.8,
+  l: 2,
+  xl: 2.4,
+);
+
+// border-radius
+$borderRadiusList: (
+  s: 3px,
+  m: 6px,
+  l: 10px,
+  xl: 1000px,
+);
+
+// bodyにかかる基本色
+$baseColor: #3a3a3a;
+$baseBg: #fffafa;
+
+// 色
+$colorList: (
+  'primary': #fe929f,
+  'secondary': #fffcf6,
+  'accent': #3dc49c,
+  'caution': #645447,
+  'additional1': #c0b390,
+  'additional2': #fffbd8,
+  'additional3': #b1b1b1,
+  'additional4': #fff18f,
+  'wt': #fff,
+  'bk': $baseColor,
+);
+
+// ::selectionカラー（テキスト選択時の色）
+$selectionBg: #{rgba(127, 83, 17, 0.8)};
+$selectionColor: #fff;
+
+// 基本フォント
+$primaryFont: YuGothic, 'Yu Gothic Medium', 'Yu Gothic', '游ゴシック体', '游ゴシック', -apple-system, BlinkMacSystemFont,
+  Roboto, 'Segoe UI', 'Helvetica Neue', HelveticaNeue, Verdana, Meiryo, sans-serif;
+$primaryFontWeight: 400;
+$secondaryFont: kozuka-mincho-pr6n, sans-serif;
+$secondaryFontweight: 500;
+
+// ヘッダー固定(position:fixedさせるかどうか)
+$fixedHeader: false;
+// ヘッダー固定時にmainにpadding-topを入れるかどうか
+$headerOverWrap: false;
+
+// margin,paddingの細かい汎用classを生成するかどうかの設定（別途xs〜xlまでのclassはあるので基本的に不要かも）
+// endValueは5の倍数でいくつ出すか（例：20なら.mb100まで作られる）
+// 不要なら$spaceClassをfalseに、paddingだけ不要なら$spacePaddingをfalseに指定
+$spaceClass: false !default;
+$spacePadding: false !default;
+$endValue: 20 !default;
+
+// widthの汎用classを生成するかどうかの設定（.w1〜.w100まで）
+$widthClass: true !default;

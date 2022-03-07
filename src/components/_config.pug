@@ -1,0 +1,39 @@
+- var dirpath
+- var path = './'
+- var path1 = '../'
+- var path2 = '../../'
+- var path3 = '../../../'
+if dir == 'dir1'
+  - var dirpath = path1
+else if dir == 'dir2'
+  - var dirpath = path2
+else if dir == 'dir3'
+  - var dirpath = path3
+else
+  - var dirpath = path
+
+
+mixin pagesBnrNav
+  ul.col4-list.sp-col1-list.jc-c.list-space1.btns-list
+    li
+      a.btn-common01.arw-r(href="") this
+    li
+      a.btn-common01.arw-r(href="") is
+    li
+      a.btn-common01.arw-r(href="") mixin
+
+-
+  var pages = {
+    home: {
+      title: 'TOPページタイトル',
+      description: 'TOPページdescription',
+      keywords: 'TOPページkeywords',
+      h1: 'TOPページ',
+    },
+    subpage: {
+      title: 'サブページタイトル',
+      description: 'サブページdescription',
+      keywords: 'サブページkeywords',
+      h1: 'サブページ',
+    },
+  }

@@ -1,0 +1,174 @@
+@use 'settings' as s;
+
+// メディアクエリ
+@mixin mqS {
+  // 767px以下の場合
+  @media (max-width: (s.$breakpointS - 1)) {
+    @content;
+  }
+}
+
+@mixin mqSM {
+  // 768px〜1024pxの場合
+  @media (min-width: s.$breakpointS) and (max-width: (s.$breakpointM - 1)) {
+    @content;
+  }
+}
+
+@mixin mqM {
+  // 768px以上の場合
+  @media (min-width: s.$breakpointM) {
+    @content;
+  }
+}
+
+@mixin mqML {
+  // 1025px〜1400pxの場合
+  @media (min-width: s.$breakpointM) and (max-width: s.$breakpointL) {
+    @content;
+  }
+}
+
+@mixin mqL {
+  // 1401以上の場合
+  @media (min-width: (s.$breakpointL + 1)) {
+    @content;
+  }
+}
+
+// 右向き矢印
+@mixin arw(
+  $direction: right,
+  $size: 5px,
+  $borderWidth: 1px,
+  $borderColor: f.color(bk),
+  $posHorizontal: 0,
+  $posTop: 2px,
+  $hoverPosHorizontal: 2px
+) {
+  position: relative;
+  &:after {
+    content: '';
+    width: $size;
+    height: $size;
+    border-bottom: $borderWidth solid $borderColor;
+    position: absolute;
+    top: calc(50% - #{$posTop});
+    transition: 0.2s;
+    @if $direction == right {
+      border-right: $borderWidth solid $borderColor;
+      right: $posHorizontal;
+      transform: rotate(-45deg);
+    } @else {
+      border-left: $borderWidth solid $borderColor;
+      left: $posHorizontal;
+      transform: rotate(45deg);
+    }
+  }
+  @include mqM {
+    transition: 0.2s;
+    &:hover {
+      &:after {
+        @if $direction == right {
+          right: $hoverPosHorizontal;
+        } @else {
+          left: $hoverPosHorizontal;
+        }
+      }
+    }
+  }
+}
+
+// font-family
+@mixin font($fontFamily: s.$secondaryFont, $fontWeight: s.$secondaryFontweight) {
+  font-family: $fontFamily;
+  font-weight: $fontWeight;
+}
+
+// flexboxのliリスト
+// 例：@include flexList(4,20%,wrap);で4つ並びで幅20%のリストが生成される
+@mixin flexList($column: 2, $eachWidth: 50%, $columnSP: 2, $eachWidthSP: 50%, $flexWrap: wrap) {
+  display: flex;
+  flex-wrap: $flexWrap;
+  li {
+    width: $eachWidth;
+    @include mqS {
+      width: $eachWidthSP;
+    }
+    &:not(:nth-of-type(#{$column}n)) {
+      margin-right: calc((100% - (#{$column} * #{$eachWidth})) / (#{$column} - 1));
+      @include mqS {
+        margin-right: inherit;
+      }
+    }
+    @include mqS {
+      &:not(:nth-of-type(#{$columnSP}n)) {
+        margin-right: calc((100% - (#{$columnSP} * #{$eachWidthSP})) / (#{$columnSP} - 1));
+      }
+    }
+  }
+}
+
+// dl要素の+-のアコーディオン（jsとの兼ね合いで.toggle-navに記載）
+@mixin toggleNav($toggleIconSize: 18px, $toggleIconThickness: 1px, $toggleIconPosition: 10px, $toggleIconColor: #333) {
+  dt {
+    position: relative;
+    cursor: pointer;
+    &:before {
+      content: '';
+      width: $toggleIconSize;
+      height: $toggleIconThickness;
+      background: $toggleIconColor;
+      position: absolute;
+      right: $toggleIconPosition;
+      top: calc(50% - (#{$toggleIconThickness} / 2));
+    }
+    &:after {
+      content: '';
+      width: $toggleIconThickness;
+      height: $toggleIconSize;
+      background: $toggleIconColor;
+      position: absolute;
+      right: calc(#{$toggleIconPosition} + (#{$toggleIconSize} / 2) - (#{$toggleIconThickness} / 2));
+      top: calc(50% - (#{$toggleIconSize} / 2));
+      transition: 0.2s;
+    }
+    &.is-active {
+      &:after {
+        transform: scaleY(0);
+      }
+    }
+  }
+  dd {
+    display: none;
+  }
+}
+
+// keyframesアニメーション
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// :hover時のアクションをタッチデバイスには適用させない
+@mixin hover {
+  @media (hover: none) {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    &:active {
+      @content;
+    }
+  }
+  @media (-ms-high-contrast: none), (-ms-high-contrast: active), (-moz-touch-enabled: 0), (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin marker {
+  background: rgba(0, 0, 0, 0) linear-gradient(transparent 60%, #fff7bc 0%) repeat scroll 0 0;
+}

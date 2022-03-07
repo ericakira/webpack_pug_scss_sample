@@ -1,0 +1,93 @@
+@use '../global' as *;
+
+/* -----------------------------
+
+project style
+
+----------------------------- */
+
+
+
+// モーダルscss一式
+// @include mqSはスマホ用メディアクエリ
+
+$modalMaxWidth: 80vw; //モーダル表示の最大幅
+$modalPadding: 3vw; //モーダル内のpadding
+$modalCloseSize: 40px; //閉じるボタンの大きさ
+$modalCloseSizeSp: 30px; //閉じるボタンの大きさスマホ用
+$modalClosePosition: 10px; //閉じるボタンのポジション(右上から)
+$modalClosePositionSp: 5px; //閉じるボタンのポジションスマホ用
+$modalCloseThickness: 2px; //閉じるボタンの太さ
+$modalCloseColor: #fff; //閉じるボタンの色
+$modalBgColor: rgba(0, 0, 0, 0.5); //モーダル背面の背景色
+
+.modal-content {
+  display: none;
+  &.modal-show {
+    display: block;
+    animation: showModal 0.2s 1 ease-out forwards;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 9999;
+    width: 100%;
+    max-width: $modalMaxWidth;
+    background: #fff;
+    overflow: scroll;
+    padding: $modalPadding;
+    min-height: 100px;
+  }
+}
+
+.modal-active {
+  overflow: hidden;
+  height: 100%;
+}
+
+.modal-close {
+  position: fixed;
+  top: $modalClosePosition;
+  right: $modalClosePosition;
+  width: $modalCloseSize;
+  height: $modalCloseSize;
+  z-index: 9999;
+  cursor: pointer;
+  @include mqS {
+    width: $modalCloseSizeSp;
+    height: $modalCloseSizeSp;
+    top: $modalClosePositionSp;
+    right: $modalClosePositionSp;
+  }
+  &:before,
+  &:after {
+    content: '';
+    width: 100%;
+    height: $modalCloseThickness;
+    background: $modalCloseColor;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.modal-bg {
+  background: $modalBgColor;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+}

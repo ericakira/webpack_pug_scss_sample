@@ -1,0 +1,728 @@
+@use '../global' as *;
+
+/* -----------------------------
+
+utility style
+
+----------------------------- */
+
+/* margin,padding汎用class */
+
+// margin,padding汎用class(詳細版：settings.scssでON/OFF設定)
+@if $spaceClass {
+  @for $i from 0 through $endValue {
+    .mt#{$i * 5} {
+      margin-top: 5px * $i;
+    }
+    .mb#{$i * 5} {
+      margin-bottom: 5px * $i;
+    }
+    @if $spacePadding {
+      .pt#{$i * 5} {
+        padding-top: 5px * $i;
+      }
+      .pb#{$i * 5} {
+        padding-bottom: 5px * $i;
+      }
+    }
+  }
+}
+// margin,padding汎用class(基本はこちらを利用)
+
+@each $key, $space in $spacesList {
+  .mb-#{$key} {
+    margin-bottom: $space;
+  }
+  .mt-#{$key} {
+    margin-top: $space;
+  }
+  .ml-#{$key} {
+    margin-left: $space;
+  }
+  .mr-#{$key} {
+    margin-right: $space;
+  }
+  .mx-#{$key} {
+    margin-right: $space;
+    margin-left: $space;
+  }
+  .my-#{$key} {
+    margin-top: $space;
+    margin-bottom: $space;
+  }
+  .pb-#{$key} {
+    padding-bottom: $space;
+  }
+  .pt-#{$key} {
+    padding-top: $space;
+  }
+  .pl-#{$key} {
+    padding-left: $space;
+  }
+  .pr-#{$key} {
+    padding-right: $space;
+  }
+  .px-#{$key} {
+    padding-right: $space;
+    padding-left: $space;
+  }
+  .py-#{$key} {
+    padding-top: $space;
+    padding-bottom: $space;
+  }
+}
+
+@each $key, $space in $spacesList {
+  @include mqSM {
+    .tb-mb-#{$key} {
+      margin-bottom: $space;
+    }
+    .tb-mt-#{$key} {
+      margin-top: $space;
+    }
+    .tb-ml-#{$key} {
+      margin-left: $space;
+    }
+    .tb-mr-#{$key} {
+      margin-right: $space;
+    }
+    .tb-mx-#{$key} {
+      margin-right: $space;
+      margin-left: $space;
+    }
+    .tb-my-#{$key} {
+      margin-top: $space;
+      margin-bottom: $space;
+    }
+    .tb-pb-#{$key} {
+      padding-bottom: $space;
+    }
+    .tb-pt-#{$key} {
+      padding-top: $space;
+    }
+    .tb-pl-#{$key} {
+      padding-left: $space;
+    }
+    .tb-pr-#{$key} {
+      padding-right: $space;
+    }
+    .tb-px-#{$key} {
+      padding-right: $space;
+      padding-left: $space;
+    }
+    .tb-py-#{$key} {
+      padding-top: $space;
+      padding-bottom: $space;
+    }
+  }
+}
+
+@each $key, $space in $spacesList {
+  @include mqS {
+    .sp-mb-#{$key} {
+      margin-bottom: $space;
+    }
+    .sp-mt-#{$key} {
+      margin-top: $space;
+    }
+    .sp-ml-#{$key} {
+      margin-left: $space;
+    }
+    .sp-mr-#{$key} {
+      margin-right: $space;
+    }
+    .sp-mx-#{$key} {
+      margin-right: $space;
+      margin-left: $space;
+    }
+    .sp-my-#{$key} {
+      margin-top: $space;
+      margin-bottom: $space;
+    }
+    .sp-pb-#{$key} {
+      padding-bottom: $space;
+    }
+    .sp-pt-#{$key} {
+      padding-top: $space;
+    }
+    .sp-pl-#{$key} {
+      padding-left: $space;
+    }
+    .sp-pr-#{$key} {
+      padding-right: $space;
+    }
+    .sp-px-#{$key} {
+      padding-right: $space;
+      padding-left: $space;
+    }
+    .sp-py-#{$key} {
+      padding-top: $space;
+      padding-bottom: $space;
+    }
+  }
+}
+
+// width汎用class(settings.scssでON/OFF設定)
+/* width汎用class */
+@if $widthClass {
+  @for $i from 0 through 100 {
+    .w#{$i} {
+      width: percentage(calc($i / 100));
+    }
+    .h#{$i} {
+      height: percentage(calc($i / 100));
+    }
+    @include mqS {
+      .sp-w#{$i} {
+        width: percentage(calc($i / 100));
+      }
+      .sp-h#{$i} {
+        height: percentage(calc($i / 100));
+      }
+    }
+  }
+}
+
+.max-h-100 {
+  max-height: 100%;
+}
+
+/* font-size汎用class */
+@each $key, $fz in $fontSizeList {
+  .fz-#{$key} {
+    font-size: $fz;
+    @include mqSM {
+      font-size: rem-vw($fz, 1024px);
+    }
+  }
+}
+
+@each $key, $fz in $fontSizeList {
+  @include mqS {
+    .sp-fz-#{$key} {
+      font-size: $fz;
+    }
+  }
+}
+
+/* letter-spacing汎用class */
+@each $key, $ls in $letterSpacingList {
+  .ls-#{$key} {
+    letter-spacing: $ls;
+  }
+}
+
+/* letter-spacing汎用class */
+@each $key, $lh in $lineHeightList {
+  .lh-#{$key} {
+    line-height: $lh;
+  }
+}
+
+/* border radius汎用class */
+@each $key, $bdradius in $borderRadiusList {
+  .bd-rd-#{$key} {
+    border-radius: $bdradius;
+  }
+}
+
+/* color系汎用class */
+@each $key, $color in $colorList {
+  .color-#{$key} {
+    color: $color;
+  }
+  a.color-#{$key} {
+    color: $color;
+  }
+  .bg-#{$key} {
+    background-color: $color;
+  }
+  .bd-color-#{$key} {
+    border-color: $color;
+  }
+}
+
+@each $key, $hovColor in $colorList {
+  .hov-color-#{$key} {
+    @include hover {
+      color: $hovColor;
+    }
+  }
+  a.hov-color-#{$key} {
+    @include hover {
+      color: $hovColor;
+    }
+  }
+  .hov-bg-#{$key} {
+    @include hover {
+      background-color: $hovColor;
+    }
+  }
+  .hov-bd-color-#{$key} {
+    @include hover {
+      border-color: $hovColor;
+    }
+  }
+}
+
+/* border系汎用class */
+
+@for $i from 0 through 10 {
+  .bd-b-#{$i} {
+    border-bottom-width: #{$i}px;
+  }
+  .bd-t-#{$i} {
+    border-top-width: #{$i}px;
+  }
+  .bd-l-#{$i} {
+    border-left-width: #{$i}px;
+  }
+  .bd-r-#{$i} {
+    border-right-width: #{$i}px;
+  }
+  .border-#{$i} {
+    border-width: #{$i}px;
+  }
+  @include mqS {
+    .sp-bd-b-#{$i} {
+      border-bottom-width: #{$i}px;
+    }
+    .sp-bd-t-#{$i} {
+      border-top-width: #{$i}px;
+    }
+    .sp-bd-l-#{$i} {
+      border-left-width: #{$i}px;
+    }
+    .sp-bd-r-#{$i} {
+      border-right-width: #{$i}px;
+    }
+    .sp-border-#{$i} {
+      border-width: #{$i}px;
+    }
+  }
+}
+
+.bd-s-solid {
+  border-style: solid;
+}
+
+.bd-s-dashed {
+  border-style: dashed;
+}
+
+.bd-s-dotted {
+  border-style: dotted;
+}
+
+.bd-s-double {
+  border-style: double;
+}
+
+.bd-s-groove {
+  border-style: groove;
+}
+
+.bd-s-ridge {
+  border-style: ridge;
+}
+
+.bd-s-none {
+  border-style: none;
+}
+
+/* text-align */
+
+.ta-l {
+  text-align: left;
+}
+
+.ta-c {
+  text-align: center;
+}
+
+.ta-r {
+  text-align: right;
+}
+
+.ta-j {
+  text-align: justify;
+}
+
+@include mqS {
+  .sp-ta-l {
+    text-align: left;
+  }
+
+  .sp-ta-c {
+    text-align: center;
+  }
+
+  .sp-ta-r {
+    text-align: right;
+  }
+
+  .sp-ta-j {
+    text-align: justify;
+  }
+}
+
+/* flex */
+
+.flex {
+  display: flex;
+}
+
+.fw-w {
+  flex-wrap: wrap;
+}
+
+.fd-r {
+  flex-direction: row;
+}
+
+.fd-rr {
+  flex-direction: row-reverse;
+}
+
+.fd-cr {
+  flex-direction: column-reverse;
+}
+
+.fd-c {
+  flex-direction: column;
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.jc-sa {
+  justify-content: space-around;
+}
+
+.jc-fe {
+  justify-content: flex-end;
+}
+
+.jc-fs {
+  justify-content: flex-start;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.ai-fe {
+  align-items: flex-end;
+}
+
+.ai-fs {
+  align-items: flex-start;
+}
+
+@include mqS {
+  .sp-fw-w {
+    flex-wrap: wrap;
+  }
+
+  .sp-fd-r {
+    flex-direction: row;
+  }
+
+  .sp-fd-rr {
+    flex-direction: row-reverse;
+  }
+
+  .sp-fd-cr {
+    flex-direction: column-reverse;
+  }
+
+  .sp-fd-c {
+    flex-direction: column;
+  }
+
+  .sp-jc-c {
+    justify-content: center;
+  }
+
+  .sp-jc-sb {
+    justify-content: space-between;
+  }
+
+  .sp-jc-sa {
+    justify-content: space-around;
+  }
+
+  .sp-jc-fe {
+    justify-content: flex-end;
+  }
+
+  .sp-jc-fs {
+    justify-content: flex-start;
+  }
+
+  .sp-ai-c {
+    align-items: center;
+  }
+
+  .sp-ai-fe {
+    align-items: flex-end;
+  }
+
+  .sp-ai-fs {
+    align-items: flex-start;
+  }
+}
+
+// object fit
+
+.ofi {
+  object-fit: cover;
+  object-position: center;
+  font-family: 'object-fit: cover;';
+  width: 100%;
+  height: 100%;
+}
+
+.bold,
+.fw-b {
+  font-weight: bold;
+}
+
+.fw-n {
+  font-weight: normal;
+}
+
+.fw-100 {
+  font-weight: 100;
+}
+
+.fw-200 {
+  font-weight: 200;
+}
+
+.fw-300 {
+  font-weight: 300;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+// position
+
+.pos-s {
+  position: static;
+}
+
+.pos-r {
+  position: relative;
+}
+
+.pos-a {
+  position: absolute;
+}
+
+.pos-f {
+  position: fixed;
+}
+
+.zi-m1 {
+  z-index: -1;
+}
+
+.zi-0 {
+  z-index: 0;
+}
+
+.zi-1 {
+  z-index: 1;
+}
+
+.zi-2 {
+  z-index: 2;
+}
+
+.zi-3 {
+  z-index: 3;
+}
+
+.zi-100 {
+  z-index: 100;
+}
+
+.zi-9999 {
+  z-index: 9999;
+}
+
+// display
+
+.d-b {
+  display: block;
+}
+
+.d-ib {
+  display: inline-block;
+}
+
+.d-i {
+  display: inline;
+}
+
+.d-t {
+  display: table;
+}
+
+.d-f {
+  display: flex;
+}
+
+// overflow
+.ovf-v {
+  overflow: visible;
+}
+.ovf-x-v {
+  overflow-x: visible;
+}
+.ovf-y-v {
+  overflow-y: visible;
+}
+
+.ovf-s {
+  overflow: scroll;
+}
+.ovf-x-s {
+  overflow-x: scroll;
+}
+.ovf-y-s {
+  overflow-y: scroll;
+}
+
+.ovf-h {
+  overflow: hidden;
+}
+.ovf-x-h {
+  overflow-x: hidden;
+}
+.ovf-y-h {
+  overflow-y: hidden;
+}
+
+// font
+
+.font-secondary {
+  @include font();
+}
+
+// transition
+
+@for $i from 0 through 20 {
+  $s: calc($i / 10);
+  .ts-#{$i} {
+    transition: #{$s}s;
+  }
+}
+
+// vertical-align
+
+.va-b {
+  vertical-align: bottom !important;
+}
+
+.va-m {
+  vertical-align: middle !important;
+}
+
+.va-t {
+  vertical-align: top !important;
+}
+
+@include mqS {
+  .sp-va-b {
+    vertical-align: bottom !important;
+  }
+
+  .sp-va-m {
+    vertical-align: middle !important;
+  }
+
+  .sp-va-t {
+    vertical-align: top !important;
+  }
+}
+
+// inviewアニメーション
+
+.anm {
+  transition: 1s;
+  &.fading {
+    opacity: 0;
+  }
+  &.to-up {
+    transform: translateY(20px);
+  }
+  &.to-down {
+    transform: translateY(-20px);
+  }
+  &.to-right {
+    transform: translateX(-10px);
+  }
+  &.to-left {
+    transform: translateX(10px);
+  }
+  &.to-left-zoomin {
+    transform: translateX(10px) scale(0.9);
+    transform-origin: right bottom;
+  }
+  &.blur {
+    filter: blur(10px);
+  }
+  &.ease-back {
+    transition-duration: 2s;
+    transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    &.to-up {
+      transform: translateY(40px);
+    }
+  }
+  &.is-show {
+    &.fading {
+      opacity: 1;
+    }
+    &.to-up {
+      transform: translateY(0px);
+    }
+    &.to-down {
+      transform: translateY(0px);
+    }
+    &.to-right {
+      transform: translateX(0px);
+    }
+    &.to-left {
+      transform: translateX(0px);
+    }
+    &.to-left-zoomin {
+      transition: 2s 0.4s;
+      transform: translateX(0px) scale(1);
+    }
+    &.blur {
+      filter: blur(0px);
+    }
+    &.delay1 {
+      transition-delay: 0.2s;
+    }
+    &.delay2 {
+      transition-delay: 0.4s;
+    }
+    &.ease-back {
+      transition-duration: 2s;
+      transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      &.to-up {
+        transform: translateY(0px);
+      }
+    }
+  }
+}

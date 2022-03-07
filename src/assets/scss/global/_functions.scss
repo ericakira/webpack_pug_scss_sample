@@ -1,0 +1,28 @@
+@use 'settings' as s;
+
+// remをvwに変換する
+// 第一引数：変換させたいrem値(1rem),第二引数(オプション)：breakpoint値(1025px)
+// 例；font-size: rem-vw(1.6rem,1024px);
+@function rem-vw($remValue: 1rem, $remBreakpoint: s.$breakpointM) {
+  $remVal: calc(($remValue * 10) / 1rem);
+  @return (calc($remVal / ($remBreakpoint / 1px)) * 100) + vw;
+}
+
+// pxをvwに変換する
+// 第一引数：変換させたいpx値(10px),第二引数(オプション)：breakpoint値(1025px)
+// 例；font-size: px-vw(16px,1024px);
+@function px-vw($pxValue: 10px, $pxBreakpoint: s.$breakpointM) {
+  @return (calc($pxValue / $pxBreakpoint) * 100) + vw;
+}
+
+// settingsで設定されているカラーを取得する
+// 例；color: color(primary);
+@function color($color) {
+  @return #{map-get(s.$colorList, $color)};
+}
+
+// settingsで設定されているfont-sizeを取得する
+// 例；font-size: fontSize(xs);
+@function fontSize($fz) {
+  @return #{map-get(s.$fontSizeList, $fz)};
+}

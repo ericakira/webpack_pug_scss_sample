@@ -1,0 +1,48 @@
+@use '../global' as *;
+
+/* -----------------------------
+
+state style
+
+----------------------------- */
+
+// PC・SPのオンオフ
+
+.is-pc {
+  display: block !important;
+  @include mqS {
+    display: none !important;
+  }
+}
+.is-sp {
+  display: none !important;
+  @include mqS {
+    display: block !important;
+  }
+}
+
+.is-gnav-open {
+  overflow: hidden;
+  height: 100%;
+}
+
+// slick slideで高さを100%に
+
+.is-slider-fullheight {
+  height: 100%;
+  .slick-list {
+    height: 100%;
+    .slick-track {
+      height: 100%;
+      .slick-slide {
+        height: 100%;
+        > div {
+          height: 100%;
+        }
+        .slide-each {
+          height: 100%;
+        }
+      }
+    }
+  }
+}

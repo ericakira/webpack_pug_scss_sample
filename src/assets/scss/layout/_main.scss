@@ -1,0 +1,102 @@
+@use '../global' as *;
+
+/* -----------------------------
+
+main style
+
+----------------------------- */
+
+.l-block-common {
+  padding-top: $sectionPadding;
+  padding-bottom: $sectionPadding;
+  @include mqS {
+    padding-top: $sectionPaddingSP;
+    padding-bottom: $sectionPaddingSP;
+  }
+}
+
+.l-block-top {
+  padding-bottom: $sectionPadding;
+  @include mqS {
+    padding-bottom: $sectionPaddingSP;
+  }
+}
+
+.l-block-bottom {
+  padding-top: $sectionPadding;
+  @include mqS {
+    padding-top: $sectionPaddingSP;
+  }
+}
+
+.l-block-title {
+  padding-top: 50px;
+}
+
+.l-box-common {
+  max-width: $widthL;
+  margin-right: auto;
+  margin-left: auto;
+  @include mqSM {
+    width: 100%;
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+  @include mqS {
+    max-width: 100%;
+    padding-right: 8%;
+    padding-left: 8%;
+    box-sizing: border-box;
+  }
+}
+
+.l-box-wider {
+  max-width: calc($widthL + 76px);
+  margin-right: auto;
+  margin-left: auto;
+  @include mqSM {
+    width: 100%;
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+  @include mqS {
+    max-width: 100%;
+    padding-right: 8%;
+    padding-left: 8%;
+    box-sizing: border-box;
+  }
+}
+
+.l-box-narrow {
+  width: $widthM;
+  margin-right: auto;
+  margin-left: auto;
+  @include mqS {
+    max-width: 100%;
+    padding: 0 8%;
+    box-sizing: border-box;
+  }
+}
+
+.l-box-very-narrow {
+  width: $widthS;
+  margin-right: auto;
+  margin-left: auto;
+  @include mqS {
+    max-width: 100%;
+    padding: 0 8%;
+    box-sizing: border-box;
+  }
+}
+
+.l-box-wide {
+  max-width: $widthXL;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 2%;
+  @include mqS {
+    max-width: 100%;
+    padding: 0 2.6%;
+    box-sizing: border-box;
+  }
+}
